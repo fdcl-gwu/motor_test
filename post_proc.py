@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pdb
 
-z = np.load('sin_60_3.npy')
+z = np.load('mat_240.npy')
 
 # pdb.set_trace()
 plt.subplot(2, 2, 1)

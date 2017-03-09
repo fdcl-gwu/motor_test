@@ -44,7 +44,7 @@ void loop() {
 //     Serial.print("cmd: ");
 //     Serial.println(send_cmd,DEC);            
    }
-   delay(20);
+   delay(10);
 }
 
 void blink() {
