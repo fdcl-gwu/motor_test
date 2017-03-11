@@ -1,12 +1,16 @@
+#!/usr/bin/env python
 import numpy as np
 import matplotlib.pyplot as plt
 import pdb
 
-z = np.load('mat_240.npy')
+z = np.load('test.npy')
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
 
+N = 2
 # pdb.set_trace()
 plt.subplot(2, 2, 1)
-plt.plot(1./z[:,1]*30*1e6,'.-')
+plt.plot(1./z[:,1]*60/N*1e6,'.')
 plt.ylabel('RPM')
 plt.subplot(2, 2, 2)
 plt.plot(z[:,2],'.-')
@@ -14,7 +18,7 @@ plt.ylabel('grams')
 plt.subplot(2, 2, 3)
 plt.plot(z[:,0],'.-')
 plt.ylabel('cmd')
-rpm = 1./z[:,1]*30*1e6
+rpm = 1./z[:,1]*60/N*1e6
 plt.subplot(2, 2, 4)
 plt.plot(rpm,z[:,2],'.-')
 
@@ -25,4 +29,7 @@ print z
 plt.plot(rpm_fit,p(rpm_fit),'--r')
 plt.ylabel('Throttle')
 plt.xlabel('rpm')
+
+plt.savefig('fit.png')
+# pp.close()
 plt.show()

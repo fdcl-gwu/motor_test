@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+import numpy as np
+import matplotlib.pyplot as plt
+import pdb
+from matplotlib.backends.backend_pdf import PdfPages
+plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+z = np.load('test.npy')
+plt.rc('text', usetex=True)
+plt.rc('font', family='serif')
+
+N = 2
+# pdb.set_trace()
+plt.subplot(1, 2, 1)
+t = np.linspace(0,15,z.shape[0])
+plt.plot(t,1./z[:,1]*60/N*1e6,'.',label='Optical sensor')
+plt.grid()
+plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+plt.plot(t,z[:,-2]*780/14,'r.',label='I$_2$C')
+plt.legend(loc='upper left')
+plt.ylabel('$\omega$ [RPM]')
+plt.xlabel('Time [s]')
+plt.subplot(1, 2, 2)
+plt.plot(z[:,-3]*z[:,-1]*0.01,z[:,-2]*780/14,'.')
+plt.grid()
+plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
+plt.ylabel('I2C RPM')
+plt.xlabel('Power [watt]')
+# plt.subplot(2, 2, 3)
+# plt.plot(z[:,-2]*780/14,'.-')
+# plt.ylabel('cmd')
+# rpm = 1./z[:,1]*60/N*1e6
+# plt.subplot(2, 2, 4)
+# plt.plot(rpm,z[:,-2],'.-')
+
+# z_fit = np.polyfit(rpm,z[:,2],2)
+# rpm_fit = np.linspace(2000,5500,100)
+# p = np.poly1d(z_fit)
+# print z
+# plt.plot(rpm_fit,p(rpm_fit),'--r')
+# plt.ylabel('Throttle')
+# plt.xlabel('rpm')
+
+# plt.savefig('fit.png')
+# pp = PdfPages('i2c.pdf')
+# pp.savefig(plt)
+plt.savefig('i2c.png')
+# pp.close()
+# plt.show()
+
+fig, ax1 = plt.subplots()
+# pdb.set_trace()
+# t = np.linspace(0,z.shape[0]/100,z.shape[0])
+ax1.plot(t, z[:,-1]*0.1,'.',label='Voltage')
+plt.ylabel('Voltage [V]')
+plt.xlabel('Time [s]')
+plt.grid()
+ax2 = ax1.twinx()
+ax2.plot(t, z[:,-3]*0.1,'r.',label='Current')
+plt.ylabel('Current [C]')
+# plt.xlim([0, 68])
+plt.tight_layout()
+# pp = PdfPages('volt_curr.pdf')
+# pp.savefig(fig)
+plt.savefig('volt_curr.png')
+# pp.close()
+# plt.show()

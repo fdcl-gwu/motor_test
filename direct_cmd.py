@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import serial
 import numpy as np
 import time
@@ -5,7 +6,7 @@ import time
 
 ser = serial.Serial()
 ser.baudrate = 9600
-ser.port = '/dev/ttyACM1'
+ser.port = '/dev/ttyACM0'
 ser
 ser.open()
 time.sleep(2)
