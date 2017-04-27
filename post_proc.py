@@ -33,7 +33,7 @@ lpow = ax2.plot(t,power,'r.',label='Power')
 lpcmd = ax2.plot(t,cmd_power_in,'b.',label='Power$_{ref}$')
 ax2.set_ylim([p_min,100])
 plt.ylabel('Power (watt)')
-
+plt.grid()
 lns = lrpm+lpow+lpcmd
 labs = [l.get_label() for l in lns]
 plt.legend(lns, labs, loc=2)
